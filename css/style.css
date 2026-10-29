@@ -110,7 +110,17 @@ main {
     background-position:  center;  
 }
 
+/*--------------------------------------------------------------
+            MENU                                                
+----------------------------------------------------------------*/
 
+#diveSpot-list {
+    display: grid; 
+    grid-template-columns: repeat(3 ,1fr);
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+}
 
 
 
