@@ -1,0 +1,128 @@
+/*------------------------------------------------------
+            GENERAL STYLES                              
+--------------------------------------------------------*/
+
+@import url("css/variables.css"); 
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* 1 rem = 10px */  
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+}
+
+.contenedor {
+  max-width: 120rem;
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+/*  -------------------------------------------------------
+            HEADER                                          
+----------------------------------------------------------- */
+
+.header {
+    background-image: url("../img/portada.webp");
+    background-position: center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+   
+}
+@media (min-width:480px ) {
+    .header {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+.header__image-logo {
+    width: 20rem;
+    height: 20rem;
+    
+}
+@media (min-width: 480px) {
+    .header__image-logo {
+    width: 30rem;
+    height: 30rem;
+    margin: 5rem;
+}
+}
+.header__title h1 {
+    font-size: 4rem;
+    color: whitesmoke;
+}
+@media (min-width: 480px) {
+    .header__title h1 {
+    font-size: 6rem;
+}
+}
+.header__title span {
+    font-size: 3rem;
+}
+@media (min-width: 480px) {
+    .header__title span {
+    font-size: 4rem;
+}
+}
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 0;
+    padding-bottom: 1rem;
+}
+@media (min-width: 480px) {
+   .nav {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    padding: none;
+} 
+}
+
+main {
+    min-height: 94vh;
+}
+
+
+/* ---------------------------------------------------------    
+        FRONT PAGE                                          
+-----------------------------------------------------------*/
+
+
+.portada__image {
+    display: block;
+    max-height: 25rem;
+    width: 100%;
+    object-fit: cover;
+    background-position:  center;  
+}
+
+
+
+
+
+/* -----------------------------------------------------------
+FOOTER                                                  
+--------------------------------------------------------------*/
+
+
+.footer__content-img {
+    display: block;
+    max-height: 25rem;
+    width: 100%;
+    object-fit: cover;
+    background-position:  center;
+}
