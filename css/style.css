@@ -133,7 +133,7 @@ main {
             MENU                                                
 ----------------------------------------------------------------*/
 
-#diveSpot-list {
+#diveSpot-list  {
     display: grid; 
     grid-template-columns: repeat(1 ,1fr);
     align-items: stretch;
@@ -143,7 +143,7 @@ main {
     margin: 1rem 2rem;
 }
 @media (min-width: 480px) {
-    #diveSpot-list {   
+    #diveSpot-list  {   
     display: grid; 
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
@@ -199,11 +199,90 @@ main {
     border-radius: 1rem;
     box-shadow: 0px 0px 10px 5px rgb(0 0 0 /.30);
     margin: 1rem;
+    
 }
-.favoriButton {
-    background-color: red;
+#diveSpot-list button.favorite-button  {
+background-color: red;
 }
 
+/* ==========================================================
+                FAVORITOS                                   
+============================================================*/
+
+.favorite-points-list {
+    display: grid; 
+    grid-template-columns: repeat(1 ,1fr);
+    align-items: stretch;
+    text-align: center;
+    gap: 2rem;
+    font-size: 1.5rem;
+    margin: 1rem 2rem;
+}
+
+
+
+@media (min-width: 480px) {
+    #favorite-points-list  {   
+    display: grid; 
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    }
+}
+
+@media (min-width: 480px) {
+    .diveSpot-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+}
+
+
+#favorite-points-list h3 {
+    font-size: 3.5rem;
+    margin: 1rem 3rem ;
+}
+#favorite-points-list h4 {
+    font-size: 2.5rem;
+    margin: 2rem auto;
+}
+#favorite-points-list h5 {
+    font-size: 2rem;
+    margin: 2rem auto;
+}
+#favorite-points-list img {
+    width: 100%;
+    max-height: 27rem;
+    object-fit: cover;
+    object-position: center;
+}
+
+#favorite-points-list p {
+    margin: 1rem 4rem; 
+}
+@media (min-width: 480px) {
+    #favorite-points-list p {
+    margin: 1rem 4rem; 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+}
+#favorite-points-list button {
+    background-color: rgb(52, 90, 240);
+    padding: 0.5rem 10rem;
+    font-size: 3rem;
+    border-style: none;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 10px 5px rgb(0 0 0 /.30);
+    margin: 1rem;
+    
+}
+#favorite-points-list button.favorite-button  {
+background-color: red;
+}
 
 /* -----------------------------------------------------------
 FOOTER                                                  

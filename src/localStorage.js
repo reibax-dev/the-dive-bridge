@@ -81,11 +81,11 @@ function isInFavorites (element) {
 }
 
 export {
-    savefavoritesToLocalStorage,
     getFavoritesFromLocalStorage,
-    toggleFavorite,
+    savefavoritesToLocalStorage,
     addToFavorites,
     removeFavorite,
-    isInFavorites,
-    clearFavorites
+    clearFavorites,
+    toggleFavorite,
+    isInFavorites
 }
