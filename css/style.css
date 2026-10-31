@@ -22,7 +22,7 @@ a {
 .contenedor {
   max-width: 120rem;
   width: 90%;
-  margin: 0 auto;
+  margin: 2rem auto;
 }
 
 
@@ -45,8 +45,27 @@ a {
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
+        min-height: 50vh;
     }
 }
+.header__favorite {
+    background-image: url("../img/portada2.webp");
+    background-position: center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;  
+}
+@media (min-width:480px ) {
+    .header__favorite {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 50vh;
+    }
+}
+
 .header__image-logo {
     width: 20rem;
     height: 20rem;
@@ -56,7 +75,7 @@ a {
     .header__image-logo {
     width: 30rem;
     height: 30rem;
-    margin: 5rem;
+
 }
 }
 .header__title h1 {
@@ -116,12 +135,74 @@ main {
 
 #diveSpot-list {
     display: grid; 
-    grid-template-columns: repeat(3 ,1fr);
-    align-items: center;
+    grid-template-columns: repeat(1 ,1fr);
+    align-items: stretch;
     text-align: center;
     gap: 2rem;
+    font-size: 1.5rem;
+    margin: 1rem 2rem;
+}
+@media (min-width: 480px) {
+    #diveSpot-list {   
+    display: grid; 
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    }
 }
 
+@media (min-width: 480px) {
+    .diveSpot-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+}
+
+
+#diveSpot-list h3 {
+    font-size: 3.5rem;
+    margin: 1rem 3rem ;
+}
+#diveSpot-list h4 {
+    font-size: 2.5rem;
+    margin: 2rem auto;
+}
+#diveSpot-list h5 {
+    font-size: 2rem;
+    margin: 2rem auto;
+}
+#diveSpot-list img {
+    width: 100%;
+    max-height: 27rem;
+    object-fit: cover;
+    object-position: center;
+}
+
+#diveSpot-list p {
+    margin: 1rem 4rem; 
+}
+@media (min-width: 480px) {
+    #diveSpot-list p {
+    margin: 1rem 4rem; 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+}
+#diveSpot-list button {
+    background-color: rgb(52, 90, 240);
+    padding: 0.5rem 10rem;
+    font-size: 3rem;
+    border-style: none;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 10px 5px rgb(0 0 0 /.30);
+    margin: 1rem;
+}
+.favoriButton {
+    background-color: red;
+}
 
 
 /* -----------------------------------------------------------
@@ -135,4 +216,14 @@ FOOTER
     width: 100%;
     object-fit: cover;
     background-position:  center;
+}
+.copyright {
+    /* display: block; */
+    background-color: blue;
+    text-align: center;
+    font-size: 2rem;
+    color: aliceblue;
+    font-weight: bold;
+    margin: 0;
+    padding: .5rem 0;
 }

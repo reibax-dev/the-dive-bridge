@@ -1,3 +1,4 @@
+import { isInFavorites, toggleFavorite } from "./localStorage.js";
 
 const API_URL = "https://api.opendivemap.com/v1/sites/";      //? mejor con "/"
 
@@ -5,7 +6,7 @@ const API_URL = "https://api.opendivemap.com/v1/sites/";      //? mejor con "/"
 
 //! LLamada a la API para obtener datos
 
-async function getDiveSpots(limit = 12, offset = 0) {
+async function getDiveSpots(limit = 9, offset = 0) {
   try {
     const url = new URL(API_URL);
     url.searchParams.append("limit", limit);
@@ -18,7 +19,7 @@ async function getDiveSpots(limit = 12, offset = 0) {
     }
     const result = await response.json();         //? Los convierto a json
 
-    return result.features;
+    return result.features;                       //? Los guarda en features la API
     // console.log(result)
     // console.log(result.features[0], { depth: null })
   } catch(error) {
@@ -70,37 +71,55 @@ function getCleanDiveSpot (diveSpotData) {
     }
 }
 
-//!    Función para crear un diveSpot con los datos que tengo
+//!    Función para crear un diveSpot con los datos que tengo en el DOM
 
 function createDiveSpotCard (diveSpot) {
-  const article       = document.createElement("article");
+  const article         = document.createElement("article");
         article.classList.add("diveSpot-card")
         article.dataset.id = diveSpot.id;
 
-  const titleName     = document.createElement("h3");
+  const titleName       = document.createElement("h3");
         titleName.textContent = diveSpot.name;
 
-  const titleCountry  = document.createElement("h4");
+  const titleCountry    = document.createElement("h4");
         titleCountry.textContent = diveSpot.countryName;
 
-  const pEnvironment  = document.createElement("p");
-        pEnvironment.textContent = diveSpot.environment;
+  const pEnvironment    = document.createElement("h5");
+        pEnvironment.textContent = diveSpot.environment.toUpperCase();
 
-  const pMaxDepth     = document.createElement("p");
-        pMaxDepth.textContent = diveSpot.maxDepth;
+  const pMaxDepth       = document.createElement("h5");
+        pMaxDepth.textContent =` ${diveSpot.maxDepth} Meters`;
 
-  const image         = document.createElement("img");
-        image.src     = diveSpot.image;
+  const image           = document.createElement("img");
+        image.src       = diveSpot.image;
         image.setAttribute("alt" , diveSpot.name);
 
-  const pDescription  = document.createElement("p");
+  const pDescription    = document.createElement("p");
         pDescription.textContent = diveSpot.description;
 
-  const pDescripWild  = document.createElement("p");
+  const pDescripWild    = document.createElement("p");
         pDescripWild.textContent = diveSpot.descriptionWildlife
 
-  const favoriteButton = document.createElement("button");
-        favoriteButton.textContent = "Like";
+  const favoriteButton  = document.createElement("button");
+  const isFavorite      = isInFavorites (diveSpot);
+      if ( isFavorite) {
+            favoriteButton.classList.add("favoriButton");
+            favoriteButton.textContent = "🫳🏻";
+      } else {
+            favoriteButton.textContent = "👌🏻";  
+      }
+      favoriteButton.addEventListener("click", () => {
+            const isFavorite = toggleFavorite(diveSpot);  //* X "let result" añadido en togglefavorite
+            // const isFavorite = isInFavorites (diveSpot)
+            if ( isFavorite) {
+            favoriteButton.classList.add("favoriButton");
+            favoriteButton.textContent = "🫳🏻";
+      } else {
+            favoriteButton.classList.remove("favoriButton");
+            favoriteButton.textContent = "👌🏻";  
+      }
+      })
+        
 
   article.append(image, titleName, titleCountry, pEnvironment, pMaxDepth, pDescription, pDescripWild, favoriteButton )
   return article;
@@ -109,11 +128,22 @@ async function init() {
         const diveSpotListSection = document.getElementById("diveSpot-list");  //* Busco la seccion
         const diveSpots = await getDiveSpots();             //* llamo a la API para que me de la lista
         console.log (diveSpots)
-        diveSpots.forEach( (feature) => {     //* Para cada uno,  
-            const data =  getCleanDiveSpot(feature);   //* Saco los datos
+        diveSpots.forEach( (feature) => {                   //* Para cada uno,features donde estan los datos  
+            const data =  getCleanDiveSpot(feature);        //* Saco los datos
             const card = createDiveSpotCard(data);          //* Creo la tarjeta
             diveSpotListSection.append(card);               //* Añado dentro de la seccion
         });
+      // //? Para crear otra lista para ordenarlos antes de mostrarlos ( no es lo que busco )
+      //   const results = diveSpots.map(async(features) => {    //* Lo guardo en una variable, que sera una lista de promesas
+      //       return await getDiveSpotData(features.id);      //* llamo a la API para buscar los datos
+      // })
+      // // console.log(results)
+      //   const datos = await Promise.all(results);
+      //   datos.forEach(features => {
+      //       const card = createDiveSpotCard ( features);
+      //       diveSpotListSection.append(card)
+      // })
+      //   console.log(datos)
 }
 init()
 
