@@ -19,7 +19,7 @@ async function getDiveSpots(limit = 9, offset = 0) {
     }
     const result = await response.json();         //? Los convierto a json
 
-    return result.features;                       //? Los guarda en features la API
+    return result;                       //? Los guarda en features la API
     // console.log(result)
     // console.log(result.features[0], { depth: null })
   } catch(error) {
@@ -51,7 +51,7 @@ async function getDiveSpotData(diveSpotId) {
       return [];
   }  
 }
-getDiveSpotData ("j7vb2y");
+getDiveSpotData ();
 
 //!  Filtar Datos del Dive Spot para obtener lo que quiero
 
