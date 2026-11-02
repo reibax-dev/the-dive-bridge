@@ -1,12 +1,25 @@
 
-import { getDiveSpots, getDiveSpotData, createDiveSpotCard, getCleanDiveSpot } from "./function.js";
+import { getDiveSpots, getDiveSpotData, createDiveSpotCard, getCleanDiveSpot, getAllDiveSpots } from "./function.js";
+import { addCountriesToSelect, filterDiveSpots } from "./form.js";
+import {renderPage } from "./render.js";
 
-const limit    = 9;
-let page       = 1;
-let totalPages = 1;  //* no sabemos el numero hasta que no cargen todas, mientras pongo 1 
 
+const limit       = 9;
+let page          = 1;
+let totalPages    = 1;  //* no sabemos el numero hasta que no cargen todas, mientras pongo 1 
+
+let allDiveSpots  = [];
+let filteredDiveSpots = [];
 
 // se podria poner el comando para utilizar un solo listener y sacar donde se ha hecho click a paertir de ese listener
+function showPage() {
+      const pagination = renderPage(filteredDiveSpots, page, limit);
+
+      page = pagination.page;
+      totalPages = pagination.totalPages;
+}
+
+
 
 
 //? elementos que muestra por página
@@ -23,9 +36,20 @@ function getPageQuantity (totalCount, limit) {
 }
 
 function setText (elementId, text) {
-      const element = document.getElementById(elementId);
-      element.textContent = text;
+      const element           = document.getElementById(elementId);
+      element.textContent     = text;
 }
+
+//? Formulario
+
+const form = document.getElementById ("diveSpot-form");
+const diveSpotCountry   = document.getElementById ("diveSpot-country");
+const diveSpotName      = document.getElementById ("diveSpot-name");
+const diveSpotLevel     = document.getElementById ("diveSpot-level");
+
+
+
+
 
 //? Botones de prev y next
 
@@ -47,18 +71,18 @@ function createPageListeners () {
             if (page < totalPages) {
                   prevButton.disabled = false ;
                   page ++ ;
+                  setText("current-page", page);      //* pongo aqui para que cambie el numero de pag antes de que carge todo.
                   if ( prevButton === totalPages) {
-                        nextButton.disabled = true;
+                        nextButton.disabled = true;   //* deshabilita boton
                   }
                   loadPage (page, limit);   
             }
      })
 }
 
-
+//* conseguir seccion donde se muetran
 
 async function loadPage(page, limit) {
-      //* conseguir seccion donde se muetran
       const diveSpotListSection = document.getElementById("diveSpot-list");  //* Busco la seccion
       diveSpotListSection.replaceChildren(); //* vacia la seleccion para añadir una nueva
 
@@ -68,7 +92,7 @@ async function loadPage(page, limit) {
       totalPages = getPageQuantity(diveSpots.numberMatched, limit);
       
       setText('total-pages', totalPages);
-      setText("current-page", page);
+      // setText("current-page", page);
 
       diveSpots.features.forEach((feature) => {                //* Para cada uno,features donde estan los datos  
       const data = getCleanDiveSpot(feature);         //* Saco los datos
@@ -87,6 +111,13 @@ async function loadPage(page, limit) {
       // })
       //   console.log(datos)
 }
+
+
+
+
+
+
+addCountriesToSelect(allDiveSpots);
 createPageListeners();
 loadPage(page, limit);
 

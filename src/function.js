@@ -6,7 +6,7 @@ const API_URL = "https://api.opendivemap.com/v1/sites/";      //? mejor con "/"
 
 //! LLamada a la API para obtener datos
 
-async function getDiveSpots(limit = 9, offset = 0) {
+async function getDiveSpots(limit = 1000, offset = 0) {
   try {
     const url = new URL(API_URL);
     url.searchParams.append("limit", limit);
@@ -25,10 +25,10 @@ async function getDiveSpots(limit = 9, offset = 0) {
   } catch(error) {
 
       console.error("Error al cargar loS dive spotS :",error );
-      return []                                   //? captura el Error 
-  } 
+    throw error;       //?throw error permite que init() en index.js detecte el problema y pueda mostrar un mensaje de error                            
+  }         
 }
-getDiveSpots();
+// getDiveSpots();
 
 //! Para obtener los datos de un punto , solo funciona con Ids
 
@@ -51,7 +51,7 @@ async function getDiveSpotData(diveSpotId) {
       return [];
   }  
 }
-getDiveSpotData ();
+// getDiveSpotData ();
 
 //!  Filtar Datos del Dive Spot para obtener lo que quiero
 
@@ -62,11 +62,12 @@ function getCleanDiveSpot (diveSpotData) {
       id: properties.id,
       name: properties.name,
       countryName : properties.country_name,
+      countryCode: properties.country_code,
       environment : properties.environment,
       maxDepth : properties.max_depth ?? null,
-      image : properties.tags.thumbnail ?? null,
-      description : properties.tags.description ?? "Sorry, description not available",
-      descriptionWildlife : properties.tags.description_wildlife ?? "Sorry, description not available"
+      image : tags.thumbnail ?? null,
+      description : tags.description ?? "Sorry, description not available",
+      descriptionWildlife : tags.description_wildlife ?? "Sorry, description not available"
 //*  ?? es el operador de coalescencia nula. Significa: “si lo de la izquierda es null o undefined, usa lo de la derecha”.Lo pongo porque la API no me garantiza esos datos en todos los spots.
     }
 }
@@ -128,10 +129,44 @@ function createDiveSpotCard (diveSpot, onFavorite = () => {} ) {        //* call
   return article;
 }
 
+//? Solicitar todas ls paginas a la API para filtar los resultados para utilizarlos
+
+async function getAllDiveSpots () {
+      const allFeatures = [];
+
+      let apiOffset     = 0;
+      let isAnotherPage = true;
+
+      while (isAnotherPage) {
+            const colection = await getAllDiveSpots (1000, apiOffset);
+            
+            if (!Array.isArray (colection.features)) {
+                  throw new Error ("Error en la respuesta de la Api");
+            }
+      //* Añade a la lista los puntos de esta página
+      colection.features.forEach ( feature => {
+            allFeatures.push (feature);
+      })
+      //* comprueba si la API indica que hay otra página
+      isAnotherPage = colection.links.some (link => {
+            link.rel === "next";
+      })
+      //* Actualiza apiOffset para la siguiente petición 
+      apiOffset = apiOffset + colection.numberReturned;
+      }
+      //* Convierte cada feature de la API a nuestro formato de filtrado y seleccion 
+      const cleanDiveSpots = allFeatures.map( feature => {
+            return getCleanDiveSpot ( feature );
+      })
+    //   return cleanDiveSpots;
+}
+
+
 export {
     getDiveSpots,
     getDiveSpotData,
     createDiveSpotCard,
-    getCleanDiveSpot
+    getCleanDiveSpot,
+    getAllDiveSpots
 
 }

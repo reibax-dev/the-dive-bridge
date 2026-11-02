@@ -3,8 +3,7 @@
 // tengo que guaradarlo
 // tengo que mostrarlo
 // poder borrarlo de la lista
-// filtrar por pais , mar y profundidad maxima y minima
-// y como extra mostrarlo un mapa interactivo.
+
 
 
 //? sacar todos los favoritos
