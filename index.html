@@ -27,26 +27,39 @@
         </div>
 
     </header>
-    <form action="" class="search-form">
+    <form action="" id="diveSpot-form">
         <fieldset>
             <legend>Search your Dive Point</legend>
-                <nav>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </nav>
+
+            <input type="search" id="diveSpot-name" placeholder="Search Your Dive Spot">
+
+             <select name="" id="diveSpot-country" >
+                <option value="" class="diveSpot-country-text">All Countries</option>
+             </select>
+
+            <select name="" id="diveSpot-level">
+                <option value="all">All Levels</option>
+                <option value="open-water">Open Water</option>
+                <option value="advance">Advance</option>
+                <option value="divemaster">Divemaster</option>
+                <option value="technical">Technical Dive</option>
+            </select> 
+
+            <button id="diveSpot-button" type="submit">SEARCH</button>
         </fieldset>
 
     </form>
+
     <section id="paginator">
+
         <button id="prev-button" disabled type="button">Previous</button>
+
         <p id="page-info">PAGE:<span id="current-page">1</span>/\<span id="total-pages">1</span></p>
+
         <button id="next-button" type="button">Next</button>
+
     </section>
-    <!-- <section class="portada">
-        <img src="#" alt="frontpage/image" class="portada__image">
-    </section> -->
+
     <main>
         <section id="diveSpot-list" ></section>
     </main>
