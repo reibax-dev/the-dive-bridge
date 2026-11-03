@@ -12,34 +12,35 @@
 //?  El código va en option.value; el nombre es lo que verá la persona.
 
 function addCountriesToSelect (diveSpots) {
-      const countries = new Map ();
+    const countrySelect = document.getElementById ("diveSpot-country")
+    const countries = new Map ();
 
-      //? guarda cada pais con su codigo una sola vez en "countries"
-      diveSpots.forEach ( diveSpot => { 
-            if (diveSpot.countryCode && diveSpot.CountryName) {
-                  countries.set(diveSpot.countryCode, diveSpot.countryName);
-            }
-      })
+    //? guarda cada pais con su codigo una sola vez en "countries"
+    diveSpots.forEach ( diveSpot => { 
+        if (diveSpot.countryCode && diveSpot.countryName) {
+                countries.set(diveSpot.countryCode, diveSpot.countryName);
+        }
+    })
 
-      //? convierte el .Map en una lista 
-      const countryList = Array.from ( countries.entries());
+    //? convierte el .Map en una lista 
+    const countryList = Array.from ( countries.entries());
 
-      //? lo ordeno por nombre 
-      countryList.sort( (countryA, countryB ) => {
-            countryA[1].localeCompare(countryB[1]);
-      })
+    //? lo ordeno por nombre 
+    countryList.sort( (countryA, countryB ) => {
+    return countryA[1].localeCompare(countryB[1]);
+    })
 
-      //? crear un "option" en el HTML para cada pais 
-      countryList.forEach(country => {
-            const countryCode = country[0];
-            const countryName = country[1];
+    //? crear un "option" en el HTML para cada pais 
+    countryList.forEach(country => {
+        const countryCode = country[0];
+        const countryName = country[1];
 
-            const option       = document.createElement("option");
-            option.value       = countryCode;
-            option.textContent = countryName;
+        const option       = document.createElement("option");
+        option.value       = countryCode;
+        option.textContent = countryName;
 
-            countrySelect.append(option);
-      })
+        countrySelect.append(option);
+    })
 }
 
 //!  Filtro por nombre , pais y profundidad 

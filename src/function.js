@@ -138,7 +138,7 @@ async function getAllDiveSpots () {
       let isAnotherPage = true;
 
       while (isAnotherPage) {
-            const colection = await getAllDiveSpots (1000, apiOffset);
+            const colection = await getDiveSpots (1000, apiOffset);
             
             if (!Array.isArray (colection.features)) {
                   throw new Error ("Error en la respuesta de la Api");
@@ -149,7 +149,7 @@ async function getAllDiveSpots () {
       })
       //* comprueba si la API indica que hay otra página
       isAnotherPage = colection.links.some (link => {
-            link.rel === "next";
+            return link.rel === "next";
       })
       //* Actualiza apiOffset para la siguiente petición 
       apiOffset = apiOffset + colection.numberReturned;
@@ -158,7 +158,7 @@ async function getAllDiveSpots () {
       const cleanDiveSpots = allFeatures.map( feature => {
             return getCleanDiveSpot ( feature );
       })
-    //   return cleanDiveSpots;
+      return cleanDiveSpots;
 }
 
 
