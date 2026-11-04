@@ -55,22 +55,56 @@ async function getDiveSpotData(diveSpotId) {
 
 //!  Filtar Datos del Dive Spot para obtener lo que quiero
 
-function getCleanDiveSpot (diveSpotData) {
-  const properties = diveSpotData.properties;  //* xk los datos estan dentro de la propiedad "properties"
-  const tags = properties.tags ?? {};         //* evito la petición adicional de getDiveSpotData para cada card.
-    return {
-      id: properties.id,
-      name: properties.name,
-      countryName : properties.country_name,
-      countryCode: properties.country_code,
-      environment : properties.environment,
-      maxDepth : properties.max_depth ?? null,
-      image : tags.thumbnail ?? "img/prov2.JPG",  //* si no tiene foto pone la mia 
-      description : tags.description ?? "Sorry, description not available",
-      descriptionWildlife : tags.description_wildlife ?? "Sorry, description not available"
-    
-    }  
+// ? foto provisional por si no me la da la API
+
+// class DiveImagen {
+//       constructor(thumbnail) {
+//             this.url = thumbnail ||  "img/prov2.JPG";
+//       }
+//       getImagenProv () {
+//             return this.url;
+//       }
+// }
+
+class DiveSpot {
+      constructor ( feature ) {
+            const properties = feature.properties;
+            const tags = properties.tags ?? {};
+
+                  this.id = properties.id;
+                  this.name = properties.name;
+                  this.countryName  = properties.country_name;
+                  this.countryCode = properties.country_code;
+                  this.environment = properties.environment;
+                  this.maxDepth = properties.max_depth ?? null;
+                  this.image = tags.thumbnail ?? "img/prov2.JPG";  //* si no tiene foto pone la mia 
+                  this.description = tags.description ?? "Sorry, description not available";
+                  this.descriptionWildlife = tags.description_wildlife ?? "Sorry, description not available";
+
+      }
 }
+
+function getCleanDiveSpot (feature) {
+      return new DiveSpot (feature);
+}
+
+
+// function getCleanDiveSpot (diveSpotData) {
+//   const properties = diveSpotData.properties;  //* xk los datos estan dentro de la propiedad "properties"
+//   const tags = properties.tags ?? {};         //* evito la petición adicional de getDiveSpotData para cada card.
+//     return {
+//       id: properties.id,
+//       name: properties.name,
+//       countryName : properties.country_name,
+//       countryCode: properties.country_code,
+//       environment : properties.environment,
+//       maxDepth : properties.max_depth ?? null,
+//       image : tags.thumbnail ?? "img/prov2.JPG",  //* si no tiene foto pone la mia 
+//       description : tags.description ?? "Sorry, description not available",
+//       descriptionWildlife : tags.description_wildlife ?? "Sorry, description not available"
+    
+//     }  
+// }
 //*  ?? es el operador de coalescencia nula. Significa: “si lo de la izquierda es null o undefined, usa lo de la derecha”.Lo pongo porque la API no me garantiza esos datos en todos los spots.//
 
 

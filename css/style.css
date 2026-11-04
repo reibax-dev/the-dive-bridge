@@ -49,23 +49,7 @@ a {
         min-height: 50vh;
     }
 }
-.header__favorite {
-    background-image: url("../img/portada2.webp");
-    background-position: center center;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;  
-}
-@media (min-width:480px ) {
-    .header__favorite {
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        min-height: 50vh;
-    }
-}
+
 
 .header__image-logo {
     width: 20rem;
