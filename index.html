@@ -8,6 +8,7 @@
     <link rel="icon" href="img/logo.png" type="logo/image">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
     <title>The Dive Bridge</title>
 </head>
 <body>
@@ -27,51 +28,52 @@
         </div>
 
     </header>
-    <form action="" id="diveSpot-form">
-        <fieldset>
-            <legend>Search your Dive Point</legend>
+    <section class="form__front">
+        <form action="" id="diveSpot-form">
+            <fieldset class="diveSpot-form-fieldset">
+                <legend class="diveSpot-form-legend">Search your Dive Point</legend>
 
-            <input type="search" id="diveSpot-name" placeholder="Search Your Dive Spot">
+                <input type="search" id="diveSpot-name" placeholder="Search Your Dive Spot">
 
-             <select name="" id="diveSpot-country" >
-                <option value="" class="diveSpot-country-text">All Countries</option>
-             </select>
+                <select name="" id="diveSpot-country" >
+                    <option value="" class="diveSpot-country-text">All Countries</option>
+                </select>
 
-            <select name="" id="diveSpot-level">
-                <option value="all">All Levels</option>
-                <option value="open-water">Open Water</option>
-                <option value="advance">Advance</option>
-                <option value="divemaster">Divemaster</option>
-                <option value="technical">Technical Dive</option>
-            </select> 
+                <select name="" id="diveSpot-level">
+                    <option value="all">All Levels</option>
+                    <option value="open-water">Open Water</option>
+                    <option value="advance">Advance</option>
+                    <option value="divemaster">Divemaster</option>
+                    <option value="technical">Technical Dive</option>
+                </select> 
 
-            <button id="diveSpot-button" type="submit">SEARCH</button>
-        </fieldset>
+                <button id="diveSpot-button" type="submit">SEARCH</button>
+            </fieldset>
+        </form>
 
-    </form>
+        <section id="paginator">
 
-    <section id="paginator">
+            <button id="prev-button" disabled type="button">PREV</button>
 
-        <button id="prev-button" disabled type="button">Previous</button>
+            <p id="page-info">PAGE: <span id="current-page">1</span>  🤿  <span id="total-pages">1</span></p>
 
-        <p id="page-info">PAGE:<span id="current-page">1</span>/\<span id="total-pages">1</span></p>
+            <button id="next-button" type="button">NEXT</button>
 
-        <button id="next-button" type="button">Next</button>
-
-    </section>
-
+        </section>      <!-- paginator -->
+    </section>    <!-- "form__front" -->
     <main>
+
         <section id="diveSpot-list" ></section>
     </main>
-    <footer class="footer">
-        <div class="footer__content">
-            <img src="img/footer.webp" alt="footer/image" class="footer__content-img">
-        </div>
+        <footer class="footer">
+            <div class="footer__content">
+                <img src="img/footer.webp" alt="footer/image" class="footer__content-img">
+            </div>
 
-        <div class="copyright">
-            <p>All Rights Rerserved to Reibax &copy;</p>
-        </div>
-    </footer>
-    <script type="module" src="src/index.js"></script>
+            <div class="copyright">
+                <p>All Rights Rerserved to Reibax &copy;</p>
+            </div>
+        </footer>
+<script type="module" src="src/index.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@ import {renderPage } from "./render.js";
 
 const limit       = 9;
 let page          = 1;
-let totalPages    = 1;  //* no sabemos el numero hasta que no cargen todas, mientras pongo 1 
+let totalPages    = 1;                                //* no se  conoce el numero hasta que no cargen todas, mientras pongo 1 
 
 let allDiveSpots  = [];
 let filteredDiveSpots = [];
@@ -17,7 +17,8 @@ const diveSpotCountry   = document.getElementById ("diveSpot-country");
 const diveSpotName      = document.getElementById ("diveSpot-name");
 const diveSpotLevel     = document.getElementById ("diveSpot-level");
 
-// se podria poner el comando para utilizar un solo listener y sacar donde se ha hecho click a paertir de ese listener
+//!================== PAGINADOR ===================================
+
 function showPage() {
       const pagination = renderPage(filteredDiveSpots, page, limit);
 
@@ -42,11 +43,6 @@ function setText (elementId, text) {
       const element           = document.getElementById(elementId);
       element.textContent     = text;
 }
-
-//? Formulario
-
-
-
 
 //* Aplica los filtros y vuelve al principio
 

@@ -25,10 +25,10 @@ function savefavoritesToLocalStorage (favoritesSpots) {
 
 function addToFavorites (element) {
     const favoritesSpots = getFavoritesFromLocalStorage();
-    const oldFavorite = favoritesSpots.find( f => f.id === element.id );  //* busca y si lo encuentra entrega el elemento en su posición de id
-    if (!oldFavorite ) {          //* si la respuesta es -1 , no existia ese elemento en el array
-        favoritesSpots.push(element);       //* lo añadimos
-        savefavoritesToLocalStorage( favoritesSpots)           //* almacenamos
+    const oldFavorite = favoritesSpots.find( f => f.id === element.id );    //* busca y si lo encuentra entrega el elemento en su posición de id
+    if (!oldFavorite ) {                                                    //* si la respuesta es -1 , no existia ese elemento en el array
+        favoritesSpots.push(element);                                       //* lo añadimos
+        savefavoritesToLocalStorage( favoritesSpots)                        //* almacenamos
     } 
 }
 
@@ -37,11 +37,11 @@ function addToFavorites (element) {
 function removeFavorite (element) {
     const favoritesSpots = getFavoritesFromLocalStorage();
     const oldFavoriteIndex = favoritesSpots.findIndex( f => f.id === element.id );  //* busca y si lo encuentra entrega el elemento en su posición de id
-    if (oldFavoriteIndex !== -1) {                          //* si la respuesta es -1 , no existia ese elemento en el array
-        favoritesSpots.splice(oldFavoriteIndex, 1)          //* quitamos 1 elemento a partir de ese indice
+    if (oldFavoriteIndex !== -1) {                                          //* si la respuesta es -1 , no existia ese elemento en el array
+        favoritesSpots.splice(oldFavoriteIndex, 1)                          //* quitamos 1 elemento a partir de ese indice
               
     }
-    savefavoritesToLocalStorage( favoritesSpots)           //* almacenamos
+    savefavoritesToLocalStorage( favoritesSpots)                            //* almacenamos
 }
 
 //? Limpiamos el Array de los favoritos
@@ -57,13 +57,13 @@ function toggleFavorite (element) {
     const oldFavoriteIndex = favoritesSpots.findIndex( f => f.id === element.id );  //* busca y si lo encuentra entrega el elemento en su posición de id
     let result = false ;
 
-    if (oldFavoriteIndex === -1) {          //* si la respuesta es -1 , no existia ese elemento en el array
-        favoritesSpots.push(element);       //* lo añadimos
+    if (oldFavoriteIndex === -1) {                                          //* si la respuesta es -1 , no existia ese elemento en el array
+        favoritesSpots.push(element);                                       //* lo añadimos
         result = true ;
     } else {
-        favoritesSpots.splice(oldFavoriteIndex, 1)       //* quitamos 1 elemento a partir de ese indice
+        favoritesSpots.splice(oldFavoriteIndex, 1)                          //* quitamos 1 elemento a partir de ese indice
     }
-    savefavoritesToLocalStorage( favoritesSpots)           //* almacenamos
+    savefavoritesToLocalStorage( favoritesSpots)                            //* almacenamos
     return result ;
 }
 
