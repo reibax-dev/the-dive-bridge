@@ -22,7 +22,7 @@ function addCountriesToSelect (diveSpots) {
         }
     })
 
-    //? convierte el .Map en una lista 
+    //? convierte el Map en una lista 
     const countryList = Array.from ( countries.entries());
 
     //? lo ordeno por nombre 
@@ -66,7 +66,7 @@ function filterDiveSpots ( diveSpots) {
      
 
         //* comprobar el nivel por profundidad
-        let machLevel       = level === 'all'
+        let machLevel       = level === 'all';
 
             //? si la API no da la profundidad , no podemos asignarle un nivel
 
