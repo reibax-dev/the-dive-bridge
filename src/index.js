@@ -13,12 +13,9 @@ let filteredDiveSpots = [];
 
 const form = document.getElementById ("diveSpot-form");
 const diveSpotListSection = document.getElementById ("diveSpot-list");
-const diveSpotCountry   = document.getElementById ("diveSpot-country");
-const diveSpotName      = document.getElementById ("diveSpot-name");
-const diveSpotLevel     = document.getElementById ("diveSpot-level");
 
 //!================== PAGINADOR ===================================
-
+//? muestra los resultados filtrados
 function showPage() {
       const pagination = renderPage(filteredDiveSpots, page, limit);
 
@@ -44,7 +41,7 @@ function setText (elementId, text) {
       element.textContent     = text;
 }
 
-//* Aplica los filtros y vuelve al principio
+//? Aplica los filtros y vuelve al principio
 
 function applyFilters () {
       filteredDiveSpots = filterDiveSpots (allDiveSpots);
@@ -52,7 +49,7 @@ function applyFilters () {
       showPage ();
 }
 
-//* evenListeners de lo recogido en el formulario y los botones de paginador
+//? evenListeners de lo recogido en el formulario y los botones de paginador
 
 function createPageListeners () {
       const prevButton = document.getElementById ("prev-button");
@@ -78,14 +75,12 @@ function createPageListeners () {
       })
 };
 
-//* cargar datos y poner en marcha la pagina
+//? cargar datos y poner en marcha la pagina
 
 async function init () {
       try {
             allDiveSpots = await getAllDiveSpots();
-
             addCountriesToSelect (allDiveSpots);
-
             filteredDiveSpots = allDiveSpots;
 
             createPageListeners ();
@@ -98,87 +93,25 @@ async function init () {
 }
 init()
 
-//? Botones de prev y next
 
-// function createPageListeners () {
-//      const prevButton = document.getElementById ( "prev-button");
-//      const nextButton = document.getElementById ( "next-button");
-
-//       form.addEventListener("submit", function (event) {
-//             event.preventDefault();
-//             applyFilters();
-//       });
-
-
-//      prevButton.addEventListener("click", () => {
-//             if (page > 1) {
-//                   page -- ;
-//                   nextButton.disabled = false;              
-//                   if ( page === 1 ) {
-//                         nextButton.disabled = true;  //* deshabilita boton
-//                   }  
-//                   loadPage (page, limit);     
-//             } 
-//      })
-//      nextButton.addEventListener("click", () => {
-//             if (page < totalPages) {
-//                   prevButton.disabled = false ;
-//                   page ++ ;
-//                   setText("current-page", page);      //* pongo aqui para que cambie el numero de pag antes de que carge todo.
-//                   if ( prevButton === totalPages) {
-//                         nextButton.disabled = true;   //* deshabilita boton
-//                   }
-//                   loadPage (page, limit);   
-//             }
-//      })
-// }
-
-// * conseguir seccion donde se muetran
+//?  conseguir seccion donde se muetran
 
 async function loadPage(page, limit) {
       const diveSpotListSection = document.getElementById("diveSpot-list");  //* Busco la seccion
-      diveSpotListSection.replaceChildren(); //* vacia la seleccion para añadir una nueva
+      diveSpotListSection.replaceChildren();                      //* vacia la seleccion para añadir una nueva
 
       const offset = getOffsetFromPage(page, limit);
-      const diveSpots = await getDiveSpots(limit, offset);   //* llamo a la API para que me de la lista
-      // console.log (diveSpots);
+      const diveSpots = await getDiveSpots(limit, offset);        //* llamo a la API para que me de la lista
       totalPages = getPageQuantity(diveSpots.numberMatched, limit);
       
       setText('total-pages', totalPages);
-      // setText("current-page", page);
 
-      diveSpots.features.forEach((feature) => {                //* Para cada uno,features donde estan los datos  
-      const data = getCleanDiveSpot(feature);         //* Saco los datos
-      const card = createDiveSpotCard(data);          //* Creo la tarjeta
-      diveSpotListSection.append(card);               //* Añado dentro de la seccion
+      diveSpots.features.forEach((feature) => {                   //* Para cada uno,features donde estan los datos  
+      const data = getCleanDiveSpot(feature);                     //* Saco los datos
+      const card = createDiveSpotCard(data);                      //* Creo la tarjeta
+      diveSpotListSection.append(card);                           //* Añado dentro de la seccion
       });
-      // //? Para crear otra lista para ordenarlos antes de mostrarlos ( no es lo que busco )
-      //   const results = diveSpots.map(async(features) => {    //* Lo guardo en una variable, que sera una lista de promesas
-      //       return await getDiveSpotData(features.id);      //* llamo a la API para buscar los datos
-      // })
-      // // console.log(results)
-      //   const datos = await Promise.all(results);
-      //   datos.forEach(features => {
-      //       const card = createDiveSpotCard ( features);
-      //       diveSpotListSection.append(card)
-      // })
-      //   console.log(datos)
-}
-
-
-
-
-
-
-// addCountriesToSelect(allDiveSpots);
-// createPageListeners();
-// loadPage(page, limit);
-
-
-
-// document.addEventListener("DOMContentLoaded", () => {
-      // getDiveSpotData ("j7vb2y");
-// })    //* Evento que se activa cuando se ha completado toda la carga del DOM, se pondria con la ejecucion de la funcion dentro , y al final 
+};
 
 
 

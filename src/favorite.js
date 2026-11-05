@@ -4,20 +4,19 @@
 import { createDiveSpotCard } from "./function.js";
 import { getFavoritesFromLocalStorage } from "./localStorage.js";
 
-function init () {
-    const diveSpots = getFavoritesFromLocalStorage();                   //* traigo los favoritos del local storage
-    const section   = document.getElementById("favorite-points-list");
-    diveSpots.forEach((diveSpot) => {
-        const card  = createDiveSpotCard (diveSpot, (dS, isFavorite) => {
-            if (!isFavorite) {                                          //* para borrar las card de favorites 
-                card.remove();                                          //* si tenemos acceso a card
-                // const card = document.querySelector(`.diveSpot-card [data-id = "${diveSpot.id}"]`);
-                // if (card) {         //* sino card, buscar con querySelector especificamente por data-id
-                //     card.remove;    //* y despues hacer un remove
-                // }
+//! Crea la página y muestra los puntos
+
+function init () {                                  
+    const diveSpots = getFavoritesFromLocalStorage();                       //* traigo los favoritos del localStorage
+    const section   = document.getElementById("favorite-points-list");      //* busca en el HTML donde añadirlos
+    diveSpots.forEach((diveSpot) => {                                       //* recorre cada punto favorito
+        const card  = createDiveSpotCard (diveSpot, (dS, isFavorite) => {   //* crea el card, el callback se ejecuta cuando cambia su estado de favorito
+            if (!isFavorite) {                                              //* si deja de ser favorito
+                card.remove();                                              //* borrar las card de favorites                 
             }
         } );
-        section.append(card);
+        section.append(card);                                               //* añade la card al HTML
+
     })
 }
-init();
+init();                                                                     //* ejecuta la funcion para cargar y mostrar los favoritos

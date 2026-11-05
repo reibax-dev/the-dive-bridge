@@ -11,35 +11,33 @@
 //?  Map guarda parejas de datos: el código del país y su nombre.
 //?  El código va en option.value; el nombre es lo que verá la persona.
 
-function addCountriesToSelect (diveSpots) {
-    const countrySelect = document.getElementById ("diveSpot-country")
-    const countries = new Map ();
+function addCountriesToSelect (diveSpots) {                             
+    const countrySelect = document.getElementById ("diveSpot-country")  //* HTML select de paises
+    const countries = new Map ();                                       //* guarda cada pais con su codigo una sola vez en "countries" 
 
-    //? guarda cada pais con su codigo una sola vez en "countries"
-    diveSpots.forEach ( diveSpot => { 
-        if (diveSpot.countryCode && diveSpot.countryName) {
-                countries.set(diveSpot.countryCode, diveSpot.countryName);
+    diveSpots.forEach ( diveSpot => {                                   //* recorre los diveSpots    
+        if (diveSpot.countryCode && diveSpot.countryName) {             //* verifica que el diveSpot tenga su codigo y pais
+                countries.set(diveSpot.countryCode, diveSpot.countryName);  //* codigo como clave, pais como valor, si existe el codigo, Map actualiza el pais de entrada
         }
     })
 
-    //? convierte el Map en una lista 
-    const countryList = Array.from ( countries.entries());
+    const countryList = Array.from ( countries.entries());              //* convierte el Map en una lista Array
 
-    //? lo ordeno por nombre 
-    countryList.sort( (countryA, countryB ) => {
+    
+    countryList.sort( (countryA, countryB ) => {                        //* lo ordeno por nombre alfabetico
     return countryA[1].localeCompare(countryB[1]);
     })
 
     //? crear un "option" en el HTML para cada pais 
-    countryList.forEach(country => {
-        const countryCode = country[0];
-        const countryName = country[1];
+    countryList.forEach(country => {                                    //* rcorre el Array de paises
+        const countryCode = country[0];                                 //* posicion 0 codigo
+        const countryName = country[1];                                 //* posicion 1 pais que se muestra
 
-        const option       = document.createElement("option");
-        option.value       = countryCode;
-        option.textContent = countryName;
+        const option       = document.createElement("option");          //* etiqueta option
+        option.value       = countryCode;                               //* valor interno select
+        option.textContent = countryName;                               //* nombre pais que muestra
 
-        countrySelect.append(option);
+        countrySelect.append(option);                                   //* se le añade al select los paises
     })
 }
 
@@ -47,24 +45,21 @@ function addCountriesToSelect (diveSpots) {
 
 function filterDiveSpots ( diveSpots) {
 
+    //? HTML formulario
     const nameInput     = document.getElementById ("diveSpot-name");
     const countrySelect = document.getElementById ("diveSpot-country");
     const levelSelect   = document.getElementById ("diveSpot-level");
 
-    const name          = nameInput.value.trim().toLowerCase();
-    const country       = countrySelect.value;
-    const level         = levelSelect.value;
-
-    return diveSpots.filter(diveSpot => {
-        //* filtro por el nombre 
-
-        const matchName = name === "" || diveSpot.name.toLowerCase().includes (name);
-
-        //* filtro por el pais
-
-        const machCountry = country === "" || diveSpot.countryCode === country;
+    const name          = nameInput.value.trim().toLowerCase();         //* filta el nombre escrito en el formHTML
+    const country       = countrySelect.value;                          //* pais seleccionado
+    const level         = levelSelect.value;                            //* nivel seleccionado
+    
+    //? Filtro de busquedas
+    return diveSpots.filter(diveSpot => {                               
+        
+        const matchName = name === "" || diveSpot.name.toLowerCase().includes (name);   //* filtro por el nombre 
+        const machCountry = country === "" || diveSpot.countryCode === country;         //* filtro por el pais
      
-
         //* comprobar el nivel por profundidad
         let machLevel       = level === 'all';
 
@@ -82,7 +77,7 @@ function filterDiveSpots ( diveSpots) {
                 machLevel = diveSpot.maxDepth > 40;
             }
         }
-        // para que de un resultado de diveSpots tiene que cumplir los 3 filtros 
+        //? para que de un resultado de diveSpots tiene que cumplir los 3 filtros 
         return matchName && machCountry && machLevel;
     })
 
