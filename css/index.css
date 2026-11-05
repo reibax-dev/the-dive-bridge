@@ -67,6 +67,7 @@
 }
 
 .diveSpot-form-legend {
+    font-family: "Plus Jakarta Sans", sans-serif;
     background-color: white;
     font-size: 3rem;
     text-align: center;
@@ -96,12 +97,15 @@
     font-size: 2rem;
 }
 #diveSpot-button {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: bold;
     grid-column: 2 / 3;
     padding: 1rem 4rem;
     border: 2px solid black ;
     font-size: 2rem;
-    box-shadow: 5px 5px 10px #a3b1c6,-5px 5px 10px #fff, inset 2px 2px 4px rgba(red, green, blue, alpha);
+    box-shadow: 5px 10px 15px #a3b1c6,-5px 5px 10px #fff, inset 2px 2px 4px rgba(red, green, blue, alpha);
     transition: all .22s ease;
+    cursor: pointer;
 
 }
 #diveSpot-button:hover {
@@ -123,18 +127,22 @@
     #paginator {
     display: flex;
     justify-content: space-evenly;  
-}
+    }
 }
 
 
 #prev-button,
 #next-button {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: #fff;
     padding: 2rem 3rem;
     font-size: 2rem;
-    box-shadow: 0px 0px 10px 5px rgb(0 0 0 /.30);
+    box-shadow: 0px 0px 15px 10px rgb(0 0 0 /.30);
     margin: 2rem auto;
-    background-color: antiquewhite;
+    background-color: rgb(2, 29, 65);
+    cursor: pointer;
 }
+
 
 
 @media (min-width: 480px) {
@@ -149,6 +157,7 @@
 #page-info,
 #total-pages
  {
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 2rem;
 }
 
@@ -254,7 +263,7 @@ main {
     font-size: 3rem;
     /* border-style: none; */
     border-radius: 1rem;
-    box-shadow: 0px 0px 10px 5px rgb(0 0 0 /.30);
+    box-shadow: 0px 0px 1rem .5rem rgb(0 0 0 /.30);
     margin: 1rem;
 
     box-shadow: 6px 6px 0 #a3b1c6,-6px -6px 0 antiquewhite;
