@@ -1,4 +1,4 @@
-                    #THE DIVE BRIDGE
+                    THE DIVE BRIDGE
 
 ## BUSCADOR DE PUNTOS DE BUCEO
 
@@ -12,7 +12,7 @@ Acciones disponibles en la aplicación:
 - Mostrar los puntos en tarjetas con su nombre, país, entorno, profundidad, imagen y descripciones disponibles.
 - Usar una imagen local cuando el punto no incluye una miniatura.
 - Buscar puntos por nombre.
-- Filtrar por país y por nivel de profundidad.
+- Filtrar por país y por nivel de certificado de buceo.
 - Recorrer los resultados con paginación, que se actualiza al cambiar los filtros.
 - Añadir y quitar puntos de la lista de favoritos.
 - Mantener los favoritos guardados en `localStorage` al recargar la página.
@@ -23,7 +23,7 @@ Los datos de los sitios proceden de OpenDiveMap. Los favoritos se guardan en el 
 ## NAVEGACIÓN
 
 1. **Explorar (`index.html`):** se muestra el catálogo de puntos de buceo.
-2. **Buscar y filtrar:** se introduce un nombre o se elige un país y un nivel de profundidad.
+2. **Buscar y filtrar:** se introduce un nombre o se elige un país y un nivel de certificado de buceo.
 3. **Recorrer resultados:** los botones de paginación permiten avanzar o volver entre las páginas que coinciden con la búsqueda.
 4. **Guardar favorito:** se pulsa el botón de favorito en una tarjeta.
 5. **Favoritos (`favorite.html`):** se consultan los puntos guardados y se pueden quitar de la lista.
@@ -59,31 +59,12 @@ the_dive_bridge/
 | --- | --- |
 | `DiveSpot` | Representa un punto de buceo y prepara sus datos para usarlos en la aplicación. |
 | `function.js` | Consulta OpenDiveMap, adapta los datos recibidos y construye las tarjetas. |
-| `form.js` | Añade países al selector y filtra por nombre, país y profundidad. |
+| `form.js` | Añade países al selector y filtra por nombre, país y certificado de buceo por profundidad. |
 | `render.js` | Muestra las tarjetas correspondientes a la página actual. |
 | `localStorage.js` | Añade, elimina y recupera favoritos del almacenamiento del navegador. |
 | `index.js` | Inicializa la página principal y conecta búsqueda, filtros y paginación. |
 | `favorite.js` | Recupera y muestra los favoritos en `favorite.html`.
 
-## EJECUCIÓN
-
-La fase actual utiliza módulos de JavaScript y se ejecuta con Node.js. No hace falta instalar dependencias externas ni abrir un servidor web.
-
-1. Instala [Node.js](https://nodejs.org/) si aún no lo tienes.
-2. Abre la carpeta raíz del proyecto en una terminal.
-3. Ejecuta la demo:
-
-   ```sh
-   npm run demo
-   ```
-
-También puedes iniciarla directamente con:
-
-```sh
-node src/demo.js
-```
-
-Cuando se implemente la interfaz HTML, se podrá servir localmente con una herramienta como **Live Server** en Visual Studio Code.
 
 ## TECNOLOGÍAS Y API
 
@@ -111,4 +92,4 @@ La documentación está disponible en [OpenDiveMap Docs](https://opendivemap.com
 
 Estas funciones se pueden añadir en las siguientes fases del proyecto.
 
-Proyecto individual del bootcamp de programación.
+Proyecto individual del bootcamp The Bridge de full stack.
