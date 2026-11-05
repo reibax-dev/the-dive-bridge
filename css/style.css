@@ -16,7 +16,8 @@ a {
   text-decoration: none;
   font-size: 3rem;
   font-weight: bold;
-  color: white;
+  color: black;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .contenedor {
@@ -64,12 +65,13 @@ a {
 }
 }
 .header__title h1 {
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 4rem;
-    color: whitesmoke;
+    /* color: rgb(239, 238, 244); */
 }
 @media (min-width: 480px) {
     .header__title h1 {
-    font-size: 6rem;
+    font-size: 8rem;
 }
 }
 .header__title span {
@@ -115,11 +117,18 @@ FOOTER
     max-height: 25rem;
     width: 100%;
     object-fit: cover;
-    background-position:  center;
+    background-position: bottom;
+}
+@media (min-width: 480px) {
+    .footer__content-img {
+       object-position: center;
+       
+    }
+    
 }
 .copyright {
     /* display: block; */
-    background-color: blue;
+    background-color: rgb(4, 4, 50);
     text-align: center;
     font-size: 1.5rem;
     color: aliceblue;
