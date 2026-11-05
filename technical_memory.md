@@ -1,4 +1,4 @@
-#THE DIVE BRIDGE
+THE DIVE BRIDGE
 
 ## MEMORIA TÉCNICA
 
@@ -103,15 +103,17 @@ La profundidad se usa como una clasificación orientativa para los filtros del p
 
 ## 4. GESTIÓN DEL TRABAJO
 
+
 | Etapa | Tarea | Resultado |
-| --- | --- | --- | --- |
-| 1. Planificación | Definir el objetivo, las páginas y las funciones principales. | Autor/a del proyecto | Alcance: exploración y favoritos. |
-| 2. API y modelo | Consultar OpenDiveMap y adaptar los datos de GeoJSON al modelo `DiveSpot`. | Datos listos para filtros y tarjetas. |
-| 3. Interfaz | Crear las páginas HTML, los estilos y las tarjetas dinámicas. |Vistas de exploración y favoritos. |
-| 4. Búsqueda | Añadir opciones de país, búsqueda por nombre y filtros de profundidad. |Resultados filtrables sin recargar la página. |
-| 5. Paginación | Dividir los resultados filtrados y actualizar los controles de navegación. | Navegación por páginas de resultados. |
-| 6. Favoritos | Guardar, recuperar y eliminar puntos con `localStorage`. | Favoritos persistentes entre recargas. |
-| 7. Revisión | Comprobar rutas, selectores del DOM y estados vacíos o sin imagen. | Ajustes y correcciones de integración.
+| :--- | :--- | :--- |
+| **1. Planificación** | Definir el objetivo, las páginas y las funciones principales. |Alcance: exploración y favoritos. |
+| **2. API y modelo** | Consultar OpenDiveMap y adaptar los datos de GeoJSON al modelo DiveSpot. | Datos listos para filtros y tarjetas. |
+| **3. Interfaz** | Crear las páginas HTML, los estilos y las tarjetas dinámicas. | Vistas de exploración y favoritos. |
+| **4. Búsqueda** | Añadir opciones de país, búsqueda por nombre y filtros de profundidad. | Resultados filtrables sin recargar la página. |
+| **5. Paginación** | Dividir los resultados filtrados y actualizar los controles de navegación. | Navegación por páginas de resultados. |
+| **6. Favoritos** | Guardar, recuperar y eliminar puntos con localStorage. | Favoritos persistentes entre recargas. |
+| **7. Revisión** | Comprobar rutas, selectores del DOM y estados vacíos o sin imagen. | Ajustes y correcciones de integración. |
+
 
 5. DESAFÍOS TÉCNICOS Y SOLUCIONES
 
