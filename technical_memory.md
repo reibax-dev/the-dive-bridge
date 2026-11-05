@@ -115,7 +115,7 @@ La profundidad se usa como una clasificación orientativa para los filtros del p
 | **7. Revisión** | Comprobar rutas, selectores del DOM y estados vacíos o sin imagen. | Ajustes y correcciones de integración. |
 
 
-5. DESAFÍOS TÉCNICOS Y SOLUCIONES
+###4.1 DESAFÍOS TÉCNICOS Y SOLUCIONES
 
 | Desafío | Solución aplicada o criterio usado |
 | --- | --- |
@@ -125,6 +125,34 @@ La profundidad se usa como una clasificación orientativa para los filtros del p
 | Los filtros y la paginación pueden quedar desincronizados. | Aplicar los filtros antes de paginar, calcular las páginas con el tamaño del array filtrado y reiniciar a la página 1 cuando cambia la búsqueda. |
 | `localStorage` solo almacena texto. | Convertir la lista de favoritos a JSON al guardar y parsearla al recuperar; buscar índices con `findIndex` al eliminar por ID. |
 | Los módulos y `fetch` no funcionan al abrir el HTML como `file://`. | Ejecutar la web con un servidor local, por ejemplo Live Server en Visual Studio Code. |
+
+##5. FLUJO DE TRABAJO CON GIT Y GITHUB
+
+ El recorrido visible, desde los cambios iniciales hasta el cierre, es el siguiente:
+
+```text
+primer commit proyecto
+  → primera fase HTML
+  → estilos de cabecera y pie
+  → primera llamada a la API
+  → localStorage y favoritos
+  → merge PR #1 a main
+  → paginador
+  → merge PR #2 a main
+  → separación de form.js y render.js
+  → filtros por nombre, país y nivel
+  → merge PR #3 a main
+  → diseño responsive e imagen de respaldo
+  → clase DiveSpot y version 1
+  → merge PR #4 a main
+  → README y memoria técnica
+  → limpieza de comentarios y console; nuevas imágenes
+  → merge PR #5 a main
+  → commit «final»
+```
+
+Los commits registran los cambios de cada etapa. Los pull requests permitieron integrar en `main` los cambios preparados desde `reibax-dev/dev`; el gráfico muestra cinco integraciones, numeradas del PR #1 al PR #5.
+
 
 ## 6. CONCLUSIONES
 
